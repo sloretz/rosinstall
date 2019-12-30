@@ -9,6 +9,8 @@ python:
 
 # command to install dependencies
 install:
+  # newer versions of docutils dropped support for Python 3.4
+  - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then pip install docutils==0.15.2; else pip install docutils; fi
   # easy_install fails to install wstool as a dependency
   # https://github.com/vcstools/rosinstall/pull/116
   - pip install wstool
